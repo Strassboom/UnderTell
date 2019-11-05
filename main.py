@@ -19,7 +19,10 @@ def home():
 
     #read wav file to an audio segment
     song = AudioSegment.from_wav(inSound)
-    speedy_song = speedup(song * 6,10.0,crossfade=5)
+    try:
+        speedy_song = speedup(song * 6,10.0,crossfade=5)
+    except:
+        speedy_song = song
     outVoice = AudioSegment.silent(duration=10)
 
     for character in text:
