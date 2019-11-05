@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @font-face {
+                font-family: "DeterminationMonoWeb";
+                src: url("/static/fonts/DeterminationMonoWeb.woff");
+            }
+            body{
+                background-color: black;
+            }
+            .talkBox{
+                position: absolute;
+                color:white;
+                border-style: solid;
+                border-color: white;
+                bottom: 20%;
+                width: 90vw;
+                height: 40vh;
+            }
+            p{
+                font-family:DeterminationMonoWeb;
+                font-size:40px;
+            }
+            
+            .talkText{
+                font-family:DeterminationMonoWeb;
+                font-size:40px;
+                background-color: black;
+                color:transparent;
+                width:95%;
+                height:95%;
+                border: none;
+                overflow: auto;
+                outline: none;
+
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+
+                resize: none;
+                text-shadow: 0 0 0 white;
+                
+            }
+            
+            
+            .talkActZone{
+                position: absolute;
+                width:65%;
+                height:45%;
+                bottom:30%;
+                margin: auto;
+                left: 0;
+                right: 0;
+            }
+            .talkButton{
+                position: absolute;
+                width: 20%;
+                height: 20%;
+                bottom: 5%;
+                margin: auto;
+                left: 0;
+                right: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="talkBox">
+            <!--<p id="demo"></p>-->
+            <textarea id="demo" type="text" class="talkText" autofocus></textarea>
+        </div>
+        <audio id="song" preload="auto">
+            <source src = "/static/voice_sans.wav"/>
+        </audio>
+
+        <script type="text/javascript">
+        var i = 0;
+        var txt = "You're gonna have a bad time";
+        var speed = 35;
+        var song = new Audio("/static/voice_sans.wav");
+        song.playbackRate = 2.0;
+        var underText = document.getElementById("demo");
+        underText.addEventListener('keydown', buttonCheck);
+
+
+        function typeWriter() {
+            song.muted = false;
+            if (i < txt.length) {
+                song.play();
+                underText.value += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        function buttonCheck(e){
+            if(e.key == "Delete"){
+                txt = underText.value;
+                underText.value = "";
+                i = 0;
+                typeWriter();
+                
+            }
+        }
+
+        window.onload = typeWriter();
+        </script>
+    </body>
+</html>
