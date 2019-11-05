@@ -22,7 +22,6 @@
                 font-family:DeterminationMonoWeb;
                 font-size:40px;
             }
-            
             .talkText{
                 font-family:DeterminationMonoWeb;
                 font-size:40px;
@@ -33,17 +32,12 @@
                 border: none;
                 overflow: auto;
                 outline: none;
-
                 -webkit-box-shadow: none;
                 -moz-box-shadow: none;
                 box-shadow: none;
-
                 resize: none;
                 text-shadow: 0 0 0 white;
-                
             }
-            
-            
             .talkActZone{
                 position: absolute;
                 width:65%;
@@ -65,28 +59,20 @@
         </style>
     </head>
     <body>
-        <div class="talkBox">
-            <!--<p id="demo"></p>-->
-            <textarea id="demo" type="text" class="talkText" autofocus></textarea>
+        <div class="talkBox">            
+            <form id="myBall" action="{{ url_for('home') }}" method="POST" >
+                <textarea id="demo" name="words" type="text" class="talkText" autofocus value="" spellcheck="false"></textarea>
+            </form>
         </div>
-        <audio id="song" preload="auto">
-            <source src = "{{url_for('static', filename='voice_sans.wav')}}"/>
-        </audio>
-
         <script type="text/javascript">
         var i = 0;
-        var txt = "You're gonna have a bad time";
-        var speed = 35;
-        var song = new Audio("{{url_for('static', filename='voice_sans.wav')}}");
-        song.playbackRate = 2.0;
+        var txt = "{{ message }}";
+        var speed = 15;
         var underText = document.getElementById("demo");
         underText.addEventListener('keydown', buttonCheck);
 
-
         function typeWriter() {
-            song.muted = false;
             if (i < txt.length) {
-                song.play();
                 underText.value += txt.charAt(i);
                 i++;
                 setTimeout(typeWriter, speed);
@@ -95,11 +81,7 @@
 
         function buttonCheck(e){
             if(e.key == "Delete"){
-                txt = underText.value;
-                underText.value = "";
-                i = 0;
-                typeWriter();
-                
+                document.getElementById("myBall").submit();       
             }
         }
 

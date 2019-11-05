@@ -65,10 +65,13 @@
         </style>
     </head>
     <body>
-        <div class="talkBox">
-            <!--<p id="demo"></p>-->
-            <textarea id="demo" type="text" class="talkText" autofocus></textarea>
+        <div class="talkBox">            
+            <form id="myBall" action="{{ url_for('home') }}" method="POST" >
+                <textarea id="demo" name="words" type="text" class="talkText" autofocus value="" spellcheck="false"></textarea>
+            </form>
+            <p id="textVal" hidden name="wuick">{{ message }}</p>
         </div>
+<<<<<<< HEAD:build/index.html
         <audio id="song" preload="auto">
             <source src = "/static/voice_sans.wav"/>
         </audio>
@@ -79,14 +82,17 @@
         var speed = 35;
         var song = new Audio("/static/voice_sans.wav");
         song.playbackRate = 2.0;
+=======
+        <script type="text/javascript">
+        var i = 0;
+        var txt = "{{ message }}";//document.getElementById("textVal").innerHTML;
+        var speed = 15;
+>>>>>>> e02b5e9... Cleaned up underteller.html. Implemented first fully working sans version for Windows 10.:templates/underteller.html
         var underText = document.getElementById("demo");
         underText.addEventListener('keydown', buttonCheck);
 
-
         function typeWriter() {
-            song.muted = false;
             if (i < txt.length) {
-                song.play();
                 underText.value += txt.charAt(i);
                 i++;
                 setTimeout(typeWriter, speed);
@@ -95,11 +101,7 @@
 
         function buttonCheck(e){
             if(e.key == "Delete"){
-                txt = underText.value;
-                underText.value = "";
-                i = 0;
-                typeWriter();
-                
+                document.getElementById("myBall").submit();       
             }
         }
 
