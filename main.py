@@ -5,13 +5,6 @@ from pydub.effects import speedup
 
 app = Flask(__name__)
 
-<<<<<<< HEAD
-@app.route('/')
-def home(text="You're gonna have a bad time"):
-    if len(text.strip()) == 0:
-        return render_template("index.html",message="")
-    return render_template("index.html")
-=======
 @app.route('/',methods=["GET","POST"])
 def home():
     if request.method == 'GET':
@@ -42,7 +35,6 @@ def home():
     wave_obj = sa.WaveObject.from_wave_file("static/result.wav")
     wave_obj.play()
     return render_template("underteller.html",message=text)
->>>>>>> e02b5e9... Cleaned up underteller.html. Implemented first fully working sans version for Windows 10.
 
 if __name__=="__main__":
     app.run(host="localhost", port=8080)
