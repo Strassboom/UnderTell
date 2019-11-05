@@ -41,7 +41,7 @@ oauthlib==3.1.0
 openpyxl==2.6.3
 packaging==19.2
 ParallelDots==3.2.13
-Pillow==6.0.0
+Pillow==6.2.0
 pipwin==0.4.5
 psutil==5.6.3
 pyasn1==0.4.7
