@@ -32,7 +32,7 @@ def home():
     outVoice = speedup(outVoice,8.0)
     outVoice.export(outSound, format="wav")
 
-    wave_obj = sa.WaveObject.from_wave_file("static/result.wav")
+    wave_obj = sa.WaveObject.from_wave_file(outSound)
     wave_obj.play()
     return render_template("underteller.html",message=text)
 
