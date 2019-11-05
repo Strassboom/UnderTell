@@ -22,7 +22,6 @@
                 font-family:DeterminationMonoWeb;
                 font-size:40px;
             }
-            
             .talkText{
                 font-family:DeterminationMonoWeb;
                 font-size:40px;
@@ -33,17 +32,12 @@
                 border: none;
                 overflow: auto;
                 outline: none;
-
                 -webkit-box-shadow: none;
                 -moz-box-shadow: none;
                 box-shadow: none;
-
                 resize: none;
                 text-shadow: 0 0 0 white;
-                
             }
-            
-            
             .talkActZone{
                 position: absolute;
                 width:65%;
@@ -69,11 +63,10 @@
             <form id="myBall" action="{{ url_for('home') }}" method="POST" >
                 <textarea id="demo" name="words" type="text" class="talkText" autofocus value="" spellcheck="false"></textarea>
             </form>
-            <p id="textVal" hidden name="wuick">{{ message }}</p>
         </div>
         <script type="text/javascript">
         var i = 0;
-        var txt = "{{ message }}";//document.getElementById("textVal").innerHTML;
+        var txt = "{{ message }}";
         var speed = 15;
         var underText = document.getElementById("demo");
         underText.addEventListener('keydown', buttonCheck);
